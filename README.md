@@ -1,6 +1,6 @@
-# ariabot
+# ariabot修复版--TeleToAria2
 
-aria2 telegram bot
+TeleToAria2
 
 # 关于本仓库
 
@@ -21,6 +21,11 @@ aria2 telegram bot
 1. 由于电报单个文件2G限制,超过2g文件将上传失败
 
 ### 如何安装
+
+---
+参考教程：https://snakexgc.ml/article/230716
+---
+
 
 1.编辑docker-compose.yml
 
