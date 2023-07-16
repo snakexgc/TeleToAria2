@@ -91,8 +91,6 @@ https://github.com/P3TERX/aria2.sh
 
 /help  查看帮助
 
-<img alt="img.png" height="400" src="img.jpg" />
-
 ### 灵感来自
 
 https://github.com/HouCoder/tele-aria2
