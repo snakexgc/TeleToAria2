@@ -44,9 +44,9 @@ TeleToAria2
       JSON_RPC_URLS: "http://1.1.11.1"  # 按格式再次输入你aria2的链接，不带端口，切勿删除""
       JSON_RPC_TOKENS: "11111"  # 按格式再次输入你aria2的秘钥，切勿删除""
       SEND_ID: 11111  #可以启动bot后发送 /start 获取，或者转发消息给 @get_id_bot 
-      #      PROXY_IP:   #可选  代理ip
-      #      PROXY_PORT:  #可选 代理端口
-      UP_TELEGRAM: 'False' #是否上传电报
+      #PROXY_IP:   #可选  代理ip
+      #PROXY_PORT:  #可选 代理端口
+
 ```
 
 2.启动
