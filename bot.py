@@ -1,9 +1,5 @@
 import asyncio
-# import uvloop
-#
-# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 import datetime
-import re
 import shutil
 import aria2p
 
@@ -47,7 +43,6 @@ ar: Aria2Client = Aria2Client(JSON_RPC_URL, JSON_RPC_TOKEN, bot)
 # 入口
 async def main():
     await ar.init()
-
     ar.client.onDownloadStart(ar.on_download_start)
     ar.client.onDownloadPause(ar.on_download_pause)
     ar.client.onDownloadComplete(ar.on_download_complete)
@@ -70,7 +65,7 @@ def get_menu(is_def_dir):
         ],
         [
             Button.text('❌ ❌ 清空已完成/停止',resize=True),
-            Button.text('❎ 开启自定义目录' if is_def_dir else '✅ 关闭自定义目录',resize=True),
+            # Button.text('❎ 开启自定义目录' if is_def_dir else '✅ 关闭自定义目录',resize=True),
             Button.text('关闭键盘',resize=True),
         ],
     ]

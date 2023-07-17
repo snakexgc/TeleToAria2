@@ -4,18 +4,16 @@ from pprint import pprint
 import ujson
 from aioaria2 import Aria2WebsocketClient
 
-from util import getFileName, order_moov, imgCoverFromFile
+from util import getFileName
 
 SEND_ID = int(os.getenv('SEND_ID'))
-UP_TELEGRAM = os.getenv('UP_TELEGRAM', 'False') == 'True'
-
+# UP_TELEGRAM = os.getenv('UP_TELEGRAM', 'False') == 'True'
 
 class Aria2Client:
     rpc_url = ''
     rpc_token = ''
     bot = None
     client = None
-    bot = None
 
     def __init__(self, rpc_url, rpc_token, bot):
         self.rpc_url = rpc_url
@@ -26,13 +24,6 @@ class Aria2Client:
         self.client: Aria2WebsocketClient = await Aria2WebsocketClient.new(self.rpc_url, token=self.rpc_token,
                                                                            loads=ujson.loads,
                                                                            dumps=ujson.dumps, )
-
-        # 先取消回调
-        # self.client.unregister(self.on_download_start, "aria2.onDownloadStart")
-        # self.client.unregister(self.on_download_pause, "aria2.onDownloadPause")
-        # self.client.unregister(self.on_download_complete, "aria2.onDownloadComplete")
-        # self.client.unregister(self.on_download_error, "aria2.onDownloadError")
-
 
     async def on_download_start(self, trigger, data):
         print(f"===========下载 开始 {data}")
@@ -63,51 +54,6 @@ class Aria2Client:
             await self.bot.send_message(SEND_ID,
                                         '下载完成===> ' + path,
                                         )
-            # 发送文件下载成功的信息
-
-            if UP_TELEGRAM:
-                if '[METADATA]' in path:
-                    os.unlink(path)
-                    return
-                print('开始上传,路径文件:' + path)
-                msg = await self.bot.send_message(SEND_ID,
-                                                  '上传中===> ' + path,
-                                                  )
-
-                async def callback(current, total):
-                    # print("\r", '正在发送', current, 'out of', total,
-                    #       'bytes: {:.2%}'.format(current / total), end="", flush=True)
-                    # await bot.edit_message(msg, path + ' \n上传中 : {:.2%}'.format(current / total))
-                    print(current / total)
-
-                try:
-                    # 单独处理mp4上传
-                    if '.mp4' in path:
-
-                        pat, filename = os.path.split(path)
-                        await order_moov(path, pat + '/' + 'mo-' + filename)
-                        # 截图
-                        await imgCoverFromFile(path, pat + '/' + filename + '.jpg')
-                        os.unlink(path)
-                        await self.bot.send_file(SEND_ID,
-                                                 pat + '/' + 'mo-' + filename,
-                                                 thumb=pat + '/' + filename + '.jpg',
-                                                 supports_streaming=True,
-                                                 progress_callback=callback
-                                                 )
-                        await msg.delete()
-                        os.unlink(pat + '/' + filename + '.jpg')
-                        os.unlink(pat + '/' + 'mo-' + filename)
-                    else:
-                        await self.bot.send_file(SEND_ID,
-                                                 path,
-                                                 progress_callback=callback
-                                                 )
-                        await msg.delete()
-                        os.unlink(path)
-
-                except FileNotFoundError as e:
-                    print('文件未找到')
 
     async def on_download_error(self, trigger, data):
         print(f"===========下载 错误 {data}")
