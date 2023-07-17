@@ -8,17 +8,21 @@ TeleToAria2
 
 因为修复方法过于愚蠢，所以我自己另开一个仓库，bug和我的解决方法均有和原作者沟通，期待之后原作者修复这个bug！
 
+# 本项目目标
+本项目最后的目标是实现多个项目的整合，实现aria2控制，转发telegram到bot后，自动下载并通过rclone上传到网盘。
+目前我的python水平很差，只能借助gpt等语言模型摸索式进行，可能最终能实现功能，但是代码成了屎山，也希望有大佬能够来帮助我完善这个项目，感激不尽！
+
+# 更新日志
+- 23.7.17 删除原项目将下载后的文件上传telegram的功能，简化项目，500+MB-->160+MB 为下一步项目合并做铺垫
+- 23.7.14 修复了文件名尾缀含参数时，下载文件名错误的bug。
+
 ### 特点
 
-1. 基于电报机器人控制aria2，自行设置下载完成后是否上传telegram
-2. ~~多用户，每个用户只能看到自己的任务~~，单用户现在，多用户没什么用
+1. 基于电报机器人控制aria2
+2. 单用户现在，多用户没什么用
 3. 支持 `批量` 添加 http、磁力、种子下载
 4. 支持自定义目录下载,使用 /path 命令设置
 
-
-### 缺点
-
-1. 由于电报单个文件2G限制,超过2g文件将上传失败
 
 ### 如何安装
 
@@ -98,5 +102,7 @@ https://github.com/HouCoder/tele-aria2
 https://github.com/synodriver/aioaria2
 
 多平台构建参考: https://cloud.tencent.com/developer/article/1543689
+
+telegram文件下载：https://github.com/EverythingSuckz/TG-FileStreamBot
 
 
