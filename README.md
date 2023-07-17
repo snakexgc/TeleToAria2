@@ -71,6 +71,15 @@ cd TeleToAria2
 docker rm -f tta
 ```
 
+删除镜像（如果镜像存在）
+```
+docker images
+```
+查看老版本镜像ID后
+```
+docker rmi ID
+```
+
 后台启动
 ```yaml
 docker compose up -d
