@@ -24,4 +24,3 @@ services:
       SEND_ID: 11111
       #      PROXY_IP:   #可选  代理ip
       #      PROXY_PORT:  #可选 代理端口
-      UP_TELEGRAM: 'False' #是否上传电报
