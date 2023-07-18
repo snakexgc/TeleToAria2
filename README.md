@@ -64,6 +64,7 @@ curl -fsSL get.docker.com -o get-docker.sh&&sh get-docker.sh &&systemctl enable 
 
 ```
 git pull https://github.com/snakexgc/TeleToAria2.git
+
 cd TeleToAria2
 ```
 
@@ -94,7 +95,7 @@ docker logs -f tta
 
 ### 可选安装
 
-aria2 安装推荐使用一下项目
+aria2 安装推荐使用以下项目
 
 ```yaml
 https://github.com/P3TERX/Aria2-Pro-Docker
