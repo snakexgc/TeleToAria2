@@ -51,7 +51,7 @@ async def main():
     print('bot启动了')
 
 
-def get_menu(is_def_dir):
+def get_menu():
     return [
         [
             Button.text('⬇️正在下载',resize=True),
@@ -65,7 +65,6 @@ def get_menu(is_def_dir):
         ],
         [
             Button.text('❌ ❌ 清空已完成/停止',resize=True),
-            # Button.text('❎ 开启自定义目录' if is_def_dir else '✅ 关闭自定义目录',resize=True),
             Button.text('关闭键盘',resize=True),
         ],
     ]
@@ -89,32 +88,12 @@ async def BotCallbackHandler(event):
 # 消息监听开始===============
 @bot.on(events.NewMessage(pattern='/menu', from_users=SEND_ID))
 async def send_welcome(event):
-    await event.respond('请选择一个选项', parse_mode='html', buttons=get_menu(is_def_dir))
+    await event.respond('请选择一个选项', parse_mode='html', buttons=get_menu())
 
 
 @bot.on(events.NewMessage(pattern="/close"))
 async def handler(event):
     await event.reply("键盘已关闭", buttons=Button.clear())
-
-
-@bot.on(events.NewMessage(pattern="/path", from_users=SEND_ID))
-async def path(event):
-    text = event.text;
-    text = text.replace('/path ', '')
-    if not text.startswith('/'):
-        await event.reply("目录必须是绝对路径")
-        return
-    global out_dir
-    out_dir = text
-    await event.reply(f"已设置自定义目录: {out_dir}")
-
-
-@bot.on(events.NewMessage(pattern="/getpath"))
-async def getpath(event):
-    if out_dir == '':
-        await event.reply(f"未设置自定义目录 /help 查看如何设置")
-        return
-    await event.reply(f"自定义目录: {out_dir}")
 
 
 @bot.on(events.NewMessage(pattern="/start"))
@@ -127,8 +106,6 @@ async def handler(event):
     await event.reply('''
 开启菜单: <code>/menu</code>
 关闭菜单: <code>/close</code>
-设置自定义目录(重启程序后需要重新设置): <code>/path 绝对路径</code>
-查看设置的自定义目录: <code>/getpath</code>
     ''', parse_mode='html')
 
 
@@ -161,24 +138,12 @@ async def send_welcome(event):
     elif text == '❌ ❌ 清空已完成/停止':
         await removeAll(event)
         return
-    elif '自定义目录' in text:
-        global is_def_dir
-        if out_dir == '':
-            await event.respond('请先设置自定义目录,提前在docker-compose.yml 配置挂载相应的目录,示例: /path /down')
-            return
-        is_def_dir = not is_def_dir
-
-        await event.respond(f'已设置自定义目录状态为{"关闭" if is_def_dir else "开启"}', parse_mode='html',
-                            buttons=get_menu(is_def_dir))
-        return
-
     elif text == '关闭键盘':
         await event.reply("键盘已关闭,/menu 开启键盘", buttons=Button.clear())
         return
 
     exta_dic = dict()
-    if not is_def_dir and out_dir != '':
-        exta_dic['dir'] = out_dir
+    exta_dic['dir'] = out_dir
 
     # http 磁力链接
     if 'http' in text or 'magnet' in text:

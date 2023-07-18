@@ -7,7 +7,6 @@ from aioaria2 import Aria2WebsocketClient
 from util import getFileName
 
 SEND_ID = int(os.getenv('SEND_ID'))
-# UP_TELEGRAM = os.getenv('UP_TELEGRAM', 'False') == 'True'
 
 class Aria2Client:
     rpc_url = ''
