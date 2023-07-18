@@ -12,6 +12,7 @@ TeleToAria2
 目前我的python水平很差，只能借助gpt等语言模型摸索式进行，可能最终能实现功能，但是代码成了屎山，也希望有大佬能够来帮助我完善这个项目，感激不尽！ 
 
 # 更新日志
+- 23.7.18 删除 自定义目录 功能，因为对于docker安装的aria2来说，这项功能无用
 - 23.7.17 删除原项目将下载后的文件上传telegram的功能，简化项目，500+MB-->160+MB 为下一步项目合并做铺垫
 - 23.7.14 修复了文件名尾缀含参数时，下载文件名错误的bug。
 
@@ -93,10 +94,10 @@ docker logs -f tta
 
 ### 可选安装
 
-aria2 一键安装脚本
+aria2 安装推荐使用一下项目
 
 ```yaml
-https://github.com/P3TERX/aria2.sh
+https://github.com/P3TERX/Aria2-Pro-Docker
 ```
 
 ### 应用截图
@@ -105,12 +106,14 @@ https://github.com/P3TERX/aria2.sh
 
 ### 灵感来自
 
-https://github.com/HouCoder/tele-aria2
+https://github.com/HouCoder/tele-aria2 
 
-https://github.com/synodriver/aioaria2
+https://github.com/synodriver/aioaria2 
 
-多平台构建参考: https://cloud.tencent.com/developer/article/1543689
+多平台构建参考: https://cloud.tencent.com/developer/article/1543689 
 
-telegram文件下载：https://github.com/EverythingSuckz/TG-FileStreamBot
+telegram文件下载：https://github.com/EverythingSuckz/TG-FileStreamBot 
+
+aria2-pro：https://github.com/P3TERX/Aria2-Pro-Docker/
 
 
