@@ -12,6 +12,7 @@ TeleToAria2
 目前我的python水平很差，只能借助gpt等语言模型摸索式进行，可能最终能实现功能，但是代码成了屎山，也希望有大佬能够来帮助我完善这个项目，感激不尽！ 
 
 # 更新日志
+- 23.11.27 简化参数，删除重复输入的参数，但是目前只支持IP
 - 23.7.18 删除 自定义目录 功能，因为对于docker安装的aria2来说，这项功能无用
 - 23.7.17 删除原项目将下载后的文件上传telegram的功能，简化项目，500+MB-->160+MB 为下一步项目合并做铺垫
 - 23.7.14 修复了文件名尾缀含参数时，下载文件名错误的bug。
@@ -40,9 +41,6 @@ TeleToAria2
       BOT_TOKEN: 11111:11111  # 在telegram @BotFather 获取
       JSON_RPC_URL: http://11111:6800/jsonrpc # 输入你aria2的链接
       JSON_RPC_TOKEN: 11111  # 输入你aria2的秘钥
-      JSON_RPC_PORTS: 6800  # 输入你aria2的端口，一般默认是6800
-      JSON_RPC_URLS: "http://1.1.11.1"  # 按格式再次输入你aria2的链接，不带端口，切勿删除""
-      JSON_RPC_TOKENS: "11111"  # 按格式再次输入你aria2的秘钥，切勿删除""
       SEND_ID: 11111  #可以启动bot后发送 /start 获取，或者转发消息给 @get_id_bot 
       #PROXY_IP:   #可选  代理ip
       #PROXY_PORT:  #可选 代理端口
@@ -62,7 +60,7 @@ curl -fsSL get.docker.com -o get-docker.sh&&sh get-docker.sh &&systemctl enable 
 拉取项目
 
 ```
-git pull https://github.com/snakexgc/TeleToAria2.git
+git clone https://github.com/snakexgc/TeleToAria2.git
 
 cd TeleToAria2
 ```
