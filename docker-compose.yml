@@ -16,9 +16,6 @@ services:
       BOT_TOKEN: 11111:11111
       JSON_RPC_URL: http://1.1.1.1:6800/jsonrpc
       JSON_RPC_TOKEN: 11111
-      JSON_RPC_PORTS: 6800
-      JSON_RPC_URLS: "http://1.1.1.1"
-      JSON_RPC_TOKENS: "11111"
       SEND_ID: 11111
       #PROXY_IP:   #可选  代理ip
       #PROXY_PORT:  #可选 代理端口

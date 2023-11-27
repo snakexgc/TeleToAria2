@@ -2,6 +2,7 @@ import asyncio
 import datetime
 import shutil
 import aria2p
+import re
 
 import python_socks
 from telethon import TelegramClient, events, Button
@@ -13,12 +14,15 @@ API_ID = int(os.getenv('API_ID'))
 API_HASH = os.getenv('API_HASH')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
-JSON_RPC_URLS = os.getenv('JSON_RPC_URLS')
-JSON_RPC_PORTS = os.getenv('JSON_RPC_PORTS')
-JSON_RPC_TOKENS = os.getenv('JSON_RPC_TOKENS')
-
 JSON_RPC_URL = os.getenv('JSON_RPC_URL')
 JSON_RPC_TOKEN = os.getenv('JSON_RPC_TOKEN')
+
+pattern = r'(https?://)(\d+\.\d+\.\d+\.\d+):(\d+)(/.*)'
+match = re.match(pattern, JSON_RPC_URL)
+
+JSON_RPC_URLS = match.group(2)
+JSON_RPC_PORTS = int(match.group(3))
+JSON_RPC_TOKENS = str(JSON_RPC_TOKEN)
 
 SEND_ID = int(os.getenv('SEND_ID'))
 # 可选配置
@@ -54,18 +58,18 @@ async def main():
 def get_menu():
     return [
         [
-            Button.text('⬇️正在下载',resize=True),
-            Button.text('⌛️ 正在等待',resize=True),
-            Button.text('✅ 已完成/停止',resize=True)
+            Button.text('⬇️正在下载', resize=True),
+            Button.text('⌛️ 正在等待', resize=True),
+            Button.text('✅ 已完成/停止', resize=True)
         ],
         [
-            Button.text('⏸️暂停任务',resize=True),
-            Button.text('▶️恢复任务',resize=True),
-            Button.text('❌ 删除任务',resize=True),
+            Button.text('⏸️暂停任务', resize=True),
+            Button.text('▶️恢复任务', resize=True),
+            Button.text('❌ 删除任务', resize=True),
         ],
         [
-            Button.text('❌ ❌ 清空已完成/停止',resize=True),
-            Button.text('关闭键盘',resize=True),
+            Button.text('❌ ❌ 清空已完成/停止', resize=True),
+            Button.text('关闭键盘', resize=True),
         ],
     ]
 
